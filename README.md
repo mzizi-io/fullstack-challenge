@@ -42,8 +42,12 @@ Design and implement a system that enables users to search for properties in the
 
 5. **Documentation**:
     - Provide a brief README detailing how to set up and run your application.
+
+6. **Running / Deployment**:
+    - Package the application using Docker or Docker Compose.
+    - Include a `run.sh` script to simplify the running process: `docker run ...` or `docker-compose up ...`
   
-6. **Bonus**:
+7. **Bonus**:
     - **Optimization**: Propose at least one optimization that can help the application perform better under increased data loads.
     - **Additional Feature**: Propose a feature you believe would enhance the user's experience while searching for properties.
 
