@@ -50,4 +50,7 @@ Design and implement a system that enables users to search for properties in the
 7. **Bonus**:
     - **Optimization**: Propose at least one optimization that can help the application perform better under increased data loads.
     - **Additional Feature**: Propose a feature you believe would enhance the user's experience while searching for properties.
+  
+**Important Note:**
+Please avoid using existing boilerplates to build the API or the frontend. We want to evaluate your technical skills and ability to design and implement solutions from scratch. Using boilerplates may hinder this evaluation process.
 
