@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: ./ndtech-challenge-vue
+      dockerfile: /Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - default_network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./ndtech-challenge-fastapi
+      dockerfile: /Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - default_network
+    environment:
+      DB_USER: "postgres"
+      DB_PASSWORD: "S3cret"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: "ndtech_app"
+
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: S3cret
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test_db
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  default_network:
+    driver: bridge

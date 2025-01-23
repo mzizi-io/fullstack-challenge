@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pydantic = "*"
+python-dotenv = "*"
+fastapi = "*"
+uvicorn = "*"
+alembic = "*"
+asyncpg = "*"
+sqlalchemy = {extras = ["asyncio"], version = "*"}
+
+[dev-packages]
+flake8 = "*"
+pre-commit = "*"
+pytest = "*"
+pandas = "*"
+sqlalchemy-utils = "*"
+openpyxl = "*"
+tox = "*"
+
+[requires]
+python_version = "3.11"

@@ -1,56 +1,34 @@
-**W&D Fullstack Engineering Challenge**
+# NDTech Challenge
+This is a simple implementation of the FastAPI Backend. I have given a number of justifications for some of the decisions made in the DISCLAIMERS section.
 
-Welcome to our Lead Fullstack Engineering Challenge repository. This document will guide you through the challenge. Please fork this repo before you begin, as we will evaluate the code on your fork.
+I also note that there are possibly a few (to quite a number) of errors and these will likely be due to an oversight on my part. I keep my fingers very crossed that there are no architectural errors, however!
 
-**Challenge Overview:**
+## Running the app locally (without Docker)
 
-Design and implement a system that enables users to search for properties in the database using filters. Users should be able to log in, search for properties with filters, and view them on a map (Google Maps, Leaflet, or similar).
+To run the app, follow the following steps:
 
-**Requirements:**
+1. Ensure you have Python 3 installed
+2. Run `pip install pipenv` to install `pipenv` which will manage dependencies
+3. Run `pipenv install` to install dependencies
+4. Run `pipenv shell` to activate your virtual environment
+5. Run `py -m src.main` or `python -m src.main` depending on the version of python you have
+6. You can also run `pipenv run py -m src.main` if you do not want to activate the virtual environment with `pipenv shell`
 
-1. **User Authentication**:
-    - Use a hardcoded basic authentication with admin/admin user/password.
+## Running the app locally (with Docker)
+I have created a `docker-compose.yml` file at the root of the main repository and have made justifications for this there.
 
-2. **Database Design and Implementation**: 
-    - We recommend using SQLite for the sake of simplicity, but feel free to choose another database if you have a specific preference. Justify your choice.
-    - Initiate the database using the data from the provided Excel file. Automation is not necessary. 
+To run this run `docker compose up`
 
-3. **Backend Development**:
-    - Develop a backend in Python to interact with the database.
-    - Choose a suitable Python framework (e.g., Flask, Django, FastAPI, Falcon) and justify your choice.
+# Pre Commit
+I've noted that code standards and technical debt are never a big change but the result of multiple small things that add up.
 
-4. **Frontend Development**:
-    - Implement the frontend using Vue.js.
-    - Once logged in, users should see the property list.
-    - Each property in the list should display:
-        - Full Address
-        - Class Description
-        - Estimated Market Value
-        - Building Use
-        - Building Square Feet
-    - Users should be able to search for properties from the database.
-        - Users should be able to search on the following values:
-            - Full Address
-            - Class
-            - Estimated_Market_Value
-            - BLDG_USE
-            - BUILDING_SQ_FT
-    - User should be able to see the properties on a map.
-    - Each marker on the map should be clickable and show the property ID.
-    - The map should be centered on the properties.
-    
+I think pre-commit is a great addition to ensuring well written, properly formatted code.
 
-5. **Documentation**:
-    - Provide a brief README detailing how to set up and run your application.
+# Tox
+This is entirely for use in the CI pipeline. This should run all the tests and linting.
 
-6. **Running / Deployment**:
-    - Package the application using Docker or Docker Compose.
-    - Include a `run.sh` script to simplify the running process: `docker run ...` or `docker-compose up ...`
-  
-7. **Bonus**:
-    - **Optimization**: Propose at least one optimization that can help the application perform better under increased data loads.
-    - **Additional Feature**: Propose a feature you believe would enhance the user's experience while searching for properties.
-  
-**Important Note:**
-Please avoid using existing boilerplates to build the API or the frontend. We want to evaluate your technical skills and ability to design and implement solutions from scratch. Using boilerplates may hinder this evaluation process.
+To run this:
 
+1. Run `tox` on the command line
+
+ 
