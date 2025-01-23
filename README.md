@@ -1,4 +1,4 @@
-# NDTech Challenge
+# WDTech Challenge
 This is a simple implementation of the FastAPI Backend and Vue front end. I have given a number of justifications for some of the decisions made in the DISCLAIMERS section.
 
 I also note that there are possibly a few (to quite a number) of errors and these will likely be due to an oversight on my part. I keep my fingers very crossed that there are no architectural errors, however!
