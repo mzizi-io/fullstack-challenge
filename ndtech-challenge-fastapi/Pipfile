@@ -20,6 +20,9 @@ pandas = "*"
 sqlalchemy-utils = "*"
 openpyxl = "*"
 tox = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocstrings = {extras = ["python"], version = "*"}
 
 [requires]
 python_version = "3.11"

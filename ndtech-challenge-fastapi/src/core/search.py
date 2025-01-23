@@ -23,6 +23,17 @@ class Search:
     async def get(
         self, session: AsyncSession, page: int, per_page: int
     ) -> AssetSearchResponse:
+        """Get assets in a paginated fashion. Defined by the page
+        and assets per page
+
+        Args:
+            session: AsyncSession instance
+            page: page
+            per_page: assets per page
+
+        Returns:
+            : List of rows from search
+        """
         try:
             query = self._paginated_search_query(
                 select(Assets), page, per_page)
@@ -41,6 +52,15 @@ class Search:
         session: AsyncSession,
         params: SearchParams
     ) -> AssetSearchResponse:
+        """Search assets in a paginated fashion.
+
+        Args:
+            session: AsyncSession instance
+            params: search params along with page and per_page
+
+        Returns:
+            : List of rows from search
+        """
         filters = self._get_filters(params.params)
         try:
             query = self._paginated_search_query(
@@ -60,6 +80,14 @@ class Search:
             logger.error(e)
 
     async def count(self, session: AsyncSession) -> int:
+        """Get count of rows in a table
+
+        Args:
+            session: AsyncSession instance
+
+        Returns:
+            : Count of rows
+        """
         try:
             rows = await session.execute(
                 select(func.count()).select_from(Assets))
@@ -68,6 +96,15 @@ class Search:
             logger.error(e)
 
     async def max(self, session: AsyncSession, field) -> float:
+        """Get max value of a column
+
+        Args:
+            session: AsyncSession instance
+            field: column
+
+        Returns:
+            : List of rows from search
+        """
         try:
             field = self._get_field_from_str(field)
             rows = await session.execute(
@@ -80,6 +117,15 @@ class Search:
     async def get_distinct_values(
         self, session: AsyncSession, field: str
     ) -> List:
+        """Get distinct values from a column
+
+        Args:
+            session: AsyncSession instance
+            field: column
+
+        Returns:
+            : List of unique values
+        """
         try:
             field = self._get_field_from_str(field)
             rows = await session.execute(
@@ -94,8 +140,16 @@ class Search:
         query,
         page: int,
         per_page: int
-    ) -> AssetSearchResponse:
+    ):
         """Converts a query into paginated search
+
+        Args:
+            query: Query
+            page: page
+            per_page: items per page
+
+        Returns:
+            : paginated query
         """
         return (
             query
@@ -104,11 +158,27 @@ class Search:
         )
 
     @staticmethod
-    def _get_field_from_str(field):
+    def _get_field_from_str(field: str):
+        """Get Assets column from string
+
+        Args:
+            field: column name
+
+        Returns:
+            : field object
+        """
         return getattr(Assets, field)
 
     def _get_indexed_field_filter(
             self, params: StrSearchCondition) -> str:
+        """Get indexed field filter
+
+        Args:
+            field: column name
+
+        Returns:
+            : query object
+        """
         filter = func\
             .to_tsvector("english", self._get_field_from_str(params.field))\
             .op("@@")(

@@ -1,0 +1,12 @@
+site_name: "NDTech Asset Explorer"
+
+theme:
+  name: "material"
+
+plugins:
+- search
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [src]
+        filters: []
