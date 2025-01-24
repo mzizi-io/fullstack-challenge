@@ -11,6 +11,7 @@ uvicorn = "*"
 alembic = "*"
 asyncpg = "*"
 sqlalchemy = {extras = ["asyncio"], version = "*"}
+colorama = "*"
 
 [dev-packages]
 flake8 = "*"
@@ -24,6 +25,7 @@ mkdocs = "*"
 mkdocs-material = "*"
 mkdocstrings = {extras = ["python"], version = "*"}
 pytest-asyncio = "*"
+colorama = "*"
 
 [requires]
 python_version = "3.11"

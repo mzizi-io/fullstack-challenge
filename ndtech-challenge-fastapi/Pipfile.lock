@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2054408ed8be7cebca3abf05cc428f191d9ed6604b0d7b90f7160f978b71bf9b"
+            "sha256": "f5b943815878ca902dc2b1f92d95c8dad5c20c7ac4f2d5dccd027e39928e2e48"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -108,7 +108,7 @@
                 "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
                 "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
             ],
-            "markers": "platform_system == 'Windows'",
+            "index": "pypi",
             "version": "==0.4.6"
         },
         "fastapi": {
@@ -662,7 +662,7 @@
                 "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
                 "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
             ],
-            "markers": "platform_system == 'Windows'",
+            "index": "pypi",
             "version": "==0.4.6"
         },
         "distlib": {
