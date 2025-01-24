@@ -30,10 +30,13 @@ I've noted that code standards and technical debt are never a big change but the
 
 I think pre-commit is a great addition to ensuring well written, properly formatted code.
 
-# Tox
+# CI Pipeline
+To run the tests and flake8 on the CI pipeline, run: ```docker-compose -f docker-compose-ci.yml up --build --abort-on-container-exit```
+
+# Tox (CI Pipeline locally)
 This is entirely for use in the CI pipeline. This should run all the tests and linting.
 
-To run this:
+To run this locally:
 
 1. Run `tox` on the command line
 

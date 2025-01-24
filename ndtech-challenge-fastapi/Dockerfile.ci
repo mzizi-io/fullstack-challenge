@@ -4,6 +4,8 @@ RUN apt-get update \
 && apt-get -y install libpq-dev gcc postgresql-client \
 && rm -rf /var/lib/apt/lists
 
+WORKDIR /app
+
 COPY Pipfile Pipfile.lock ./
 
 RUN pip install pipenv && \
