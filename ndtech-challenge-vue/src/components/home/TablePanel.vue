@@ -72,16 +72,16 @@ const getAssetsFromCoordinates = async () => {
             field: "latitude",
             min: Math.min(bounds.value.northEast[0], bounds.value.southWest[0]),
             max: Math.max(bounds.value.northEast[0], bounds.value.southWest[0]),
-        },{
+        },{                                                              
             field: "longitude",
             min: Math.min(bounds.value.northEast[1], bounds.value.southWest[1]),
-            max: Math.max(bounds.value.northEast[1], bounds.value.southWest[1]),
+            max: Math.max(bounds.value.northEast[1], bounds.value.southWest[1]),                                     
         }],
         page: 1,
-        per_page: 100
+        per_page: 100                                                  
     }
     console.log(body)
-    const _assets = await search(body)
+    const _assets = await search(body)                                                                                                                      
     store.setAssets(_assets.assets)
     await updateMarkers()
 }

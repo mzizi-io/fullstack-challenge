@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from logging import getLogger
 from src.core.search import Search
@@ -22,6 +22,9 @@ async def get(
         return res
     except Exception as e:
         logger.error(e)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to return a response.")
 
 
 @search_router.post("/")
@@ -34,3 +37,6 @@ async def search(
         return res
     except Exception as e:
         logger.error(e)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to return a response.")

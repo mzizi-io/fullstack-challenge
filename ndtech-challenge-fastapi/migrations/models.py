@@ -1,10 +1,12 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (
+    BIGINT,
     Column,
     DateTime,
     Float,
     Integer,
     String,
+    Text,
     func
 )
 
@@ -31,9 +33,9 @@ class Assets(Base):
     latitude = Column(Float, nullable=False)
     zip_code = Column(Integer, nullable=False)
     rec_type = Column(String(255), nullable=False)
-    pin = Column(Integer, nullable=False)
+    pin = Column(BIGINT, nullable=False)
     ovacls = Column(Integer, nullable=False)
-    class_description = Column(String(255), nullable=False)
+    class_description = Column(Text, nullable=False)
     current_land = Column(Integer, nullable=False)
     current_building = Column(Integer, nullable=False)
     current_total = Column(Integer, nullable=False)

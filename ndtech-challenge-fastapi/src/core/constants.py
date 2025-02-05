@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API_VERSION = "v1"
 DB_USER = os.environ["DB_USER"]

@@ -5,15 +5,16 @@ from datetime import date
 
 
 class SearchTypes(Enum):
-    STRING = "string"
+    INDEXED_TEXT = "indexed_text"
+    SIMILAR_STRING = "similar_string"
     EXACT_STRING = "exact_string"
     RANGE = "range"
 
 
-class StrSearchCondition(BaseModel):
+class SearchCondition(BaseModel):
     field: str
     value: str
-    search_type: SearchTypes = SearchTypes.EXACT_STRING
+    search_type: SearchTypes
 
 
 class RangeSearchCondition(BaseModel):
@@ -24,7 +25,7 @@ class RangeSearchCondition(BaseModel):
 
 
 class SearchParams(BaseModel):
-    params: List[Union[StrSearchCondition, RangeSearchCondition]]
+    params: List[Union[SearchCondition, RangeSearchCondition]]
     per_page: int
     page: int
 

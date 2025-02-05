@@ -70,12 +70,14 @@ const fields = {
         fullAddress: {
             minSearchLen: 5,
             dbField: "full_address",
-            value: fullAddress
+            value: fullAddress,
+            filter_type: "similar_string"
         },
         classDescription: {
             minSearchLen: 5,
             dbField: "class_description",
-            value: classDescription
+            value: classDescription,
+            filter_type: "indexed_text"
         }
     },
     numericFields: {
@@ -104,7 +106,7 @@ const createTextFilter = (item) => {
         return {
             field: item.dbField,
             value: item.value.value,
-            searchType: "string"
+            search_type: item.filter_type
         }
     }
 }
@@ -125,7 +127,7 @@ const getSearchedAssets = async(includeNumericVals) => {
         params.push({
             field: "bldg_use",
             value: buildingUse.value,
-            searchType: "exact_string"
+            search_type: "exact_string"
         })
     }
     
@@ -160,7 +162,7 @@ const getSearchedAssets = async(includeNumericVals) => {
 
 onMounted( getFieldOptions )
 watch(
-    [estimatedValue, buildingSqFT, fullAddress, classDescription, buildingUse],
+    [fullAddress, classDescription, buildingUse],
     async () => {getSearchedAssets(false)}
 )
 </script>

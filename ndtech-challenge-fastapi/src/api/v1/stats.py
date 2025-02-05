@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from logging import getLogger
 from src.core.search import Search
@@ -16,6 +16,9 @@ async def count(session: AsyncSession = Depends(get_db_session)) -> int:
         return res
     except Exception as e:
         logger.error(e)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to return a response.")
 
 
 @stats_router.get("/distinct-values/by-field/{field}")
@@ -27,6 +30,9 @@ async def get_distinct_values(
         return res
     except Exception as e:
         logger.error(e)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to return a response.")
 
 
 @stats_router.get("/max/by-field/{field}")
@@ -38,3 +44,6 @@ async def get_max_value(
         return res
     except Exception as e:
         logger.error(e)
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to return a response.")

@@ -9,4 +9,7 @@ async def get_db_session():
         : an AsyncSession instance
     """
     async with session_factory as session:
-        yield session
+        try:
+            yield session
+        finally:
+            await session.close()

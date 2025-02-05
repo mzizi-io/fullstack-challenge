@@ -12,6 +12,7 @@ alembic = "*"
 asyncpg = "*"
 sqlalchemy = {extras = ["asyncio"], version = "*"}
 colorama = "*"
+psycopg2 = "*"
 
 [dev-packages]
 flake8 = "*"

@@ -7,7 +7,7 @@ from src.core.db.models import Assets
 from src.core.db.session_factory import session_factory
 from src.core.schemas import (
     SearchParams,
-    StrSearchCondition,
+    SearchCondition,
     SearchTypes,
     RangeSearchCondition
 )
@@ -46,6 +46,7 @@ class Search:
             )
         except Exception as e:
             logger.error(e)
+            raise e
 
     async def search(
         self,
@@ -78,6 +79,7 @@ class Search:
 
         except Exception as e:
             logger.error(e)
+            raise e
 
     async def count(self, session: AsyncSession) -> int:
         """Get count of rows in a table
@@ -94,6 +96,7 @@ class Search:
             return rows.scalar()
         except Exception as e:
             logger.error(e)
+            raise e
 
     async def max(self, session: AsyncSession, field) -> float:
         """Get max value of a column
@@ -113,6 +116,7 @@ class Search:
             return rows.scalar()
         except Exception as e:
             logger.error(e)
+            raise e
 
     async def get_distinct_values(
         self, session: AsyncSession, field: str
@@ -134,6 +138,7 @@ class Search:
             return rows.scalars().all()
         except Exception as e:
             logger.error(e)
+            raise e
 
     def _paginated_search_query(
         self,
@@ -170,7 +175,7 @@ class Search:
         return getattr(Assets, field)
 
     def _get_indexed_field_filter(
-            self, params: StrSearchCondition) -> str:
+            self, params: SearchCondition) -> str:
         """Get indexed field filter
 
         Args:
@@ -196,6 +201,10 @@ class Search:
             self, params: RangeSearchCondition) -> AssetSearchResponse:
         return self._get_field_from_str(params.field) == params.value
 
+    def _get_similar_string(self, params: RangeSearchCondition):
+        return self._get_field_from_str(params.field).\
+            ilike(f"%{params.value}%")
+
     def _get_filters(
             self, params: SearchParams
     ) -> List:
@@ -209,8 +218,12 @@ class Search:
                 filters.append(
                     self._get_exact_string_field_filter(param)
                 )
-            else:
+            elif param.search_type == SearchTypes.INDEXED_TEXT:
                 filters.append(
                     self._get_indexed_field_filter(param)
+                )
+            else:
+                filters.append(
+                    self._get_similar_string(param)
                 )
         return filters
